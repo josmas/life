@@ -10,12 +10,12 @@ public class Grid {
 	private final List<Cell> seedGrid;
 	private Set<Cell> deadAndAliveGrid;
 	private List<Cell> evolvedGrid;
-	
-	private static final int [][] HOOD_INDEXES =  { 
-        {-1, -1}, {-1, 0}, {-1, 1}, 
-        {0, -1}, {0, 1},
-        {1, -1}, {1, 0}, {1, 1}
-    };
+
+	private static final int[][] HOOD_INDEXES = { 
+		{ -1, -1 }, { -1, 0 }, { -1, 1 },
+		{ 0, -1 }, { 0, 1 }, 
+		{ 1, -1 }, { 1, 0 }, { 1, 1 } 
+	};
 
 	public Grid(List<Cell> cellForGrid) {
 		this.seedGrid = cellForGrid;
@@ -24,17 +24,20 @@ public class Grid {
 	}
 
 	public void tick() {
-		
 		for (Cell currentCell : deadAndAliveGrid) {
 			int numberOfNeighbours = countNeighbours(currentCell);
-			if ( (numberOfNeighbours == 2 || numberOfNeighbours == 3) && seedGrid.contains(currentCell) )
-				evolvedGrid.add(currentCell);
-			if ( numberOfNeighbours == 3 && !seedGrid.contains(currentCell) )
-				evolvedGrid.add(currentCell);
+			applyEvolutionRules(currentCell, numberOfNeighbours);
 		}
 	}
 
-	public Object evolvedGridSize() {
+	private void applyEvolutionRules(Cell currentCell, int numberOfNeighbours) {
+		if ( (numberOfNeighbours == 2 || numberOfNeighbours == 3) && seedGrid.contains(currentCell) )
+			evolvedGrid.add(currentCell);
+		if ( numberOfNeighbours == 3 && !seedGrid.contains(currentCell) )
+			evolvedGrid.add(currentCell);
+	}
+
+	public int evolvedGridSize() {
 		return evolvedGrid.size();
 	}
 
@@ -42,7 +45,7 @@ public class Grid {
 		return evolvedGrid;
 	}
 
-	public Set<Cell> fillUpGrid() {
+	Set<Cell> fillUpGrid() {
 		Set<Cell> filledUpGrid = new HashSet<Cell>();
 		
 		for (Cell aliveCell : seedGrid) {
