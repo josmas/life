@@ -16,21 +16,21 @@ describe("The game of life", function() {
   it("should create a neighbourhood from one cell", function() {
     var seed = { "0,0": 0 };
     var grid = new Grid(seed);
-    grid.init();
+    grid.tick();
     expect(grid.filledUpGridSize()).toEqual(9);
   });
   
   it("should create a neighbourhood with no repeated cells", function() {
     var seed = { "0,0": 0, "0,1": 0 };
     var grid = new Grid(seed);
-    grid.init();
+    grid.tick();
     expect(grid.filledUpGridSize()).toEqual(12);
   });
 
   it("should have the right amonut of neighbours for a seed of one", function() {
     var seed = { "0,0": 0 };
     var grid = new Grid(seed);
-    grid.init();
+    grid.tick();
     expect(grid.countNeighbours([-1,-1])).toEqual(1);
     expect(grid.countNeighbours([-1,1])).toEqual(1);
     expect(grid.countNeighbours([0,0])).toEqual(0);

@@ -1,17 +1,12 @@
 function Grid(seed) {
 
-  var grid = {};
-  var seed = seed;
-  var evolvedGrid = [];
-  var filledUpGrid = [];
-
-  var hood = [ [-1, -1], [-1, 0], [-1, 1],
+  var grid = {},
+      seed = seed,
+      evolvedGrid = [],
+      filledUpGrid = [],
+      hood = [ [-1, -1], [-1, 0], [-1, 1],
                [0, -1], [0, 1],
                [1, -1], [1, 0], [1, 1] ];
-
-  grid.init = function() {
-    filledUpGrid = grid.fillUpGrid();
-  };
 
   grid.fillUpGrid = function() {
   
