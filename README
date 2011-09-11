@@ -1,1 +1,4 @@
-First version of the game_of_life in Java; more languages to come... soonish!
+A number of solutions for the game_of_life, one in Java and one in JavaScript with Jasmine.
+
+The Java version uses Sets to avoid duplicates; The js version uses objects to automatically
+avoid duplicates (it's a bit mixed up, refactoring would do a lot of good!)
